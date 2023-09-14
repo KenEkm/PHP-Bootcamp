@@ -119,4 +119,34 @@ echo "</ul>";
 $arrkurz = ["bsp1", "bsp2"];
 var_dump($arrkurz);
 echo "<br>";
+
+
+//funktionen 
+function myFunction($name, $age){
+    echo "Hallo {$name} {$age}"."<br>";
+}
+
+myFunction("Joey", 25);
+myFunction("Chandler", 26);
+
+//global keyword
+$name = "Joey";
+
+function meineFunktion(){
+    global $name;           //greift auf variablen außerhalb des eigenen scopes zu. 
+    echo $name."<br>";     //achtung unübersichtlich. besser -> var als parameter übergeben.
+}
+meineFunktion();
+echo "<br>";
+
+//funktion scope
+$test = "test";
+
+function myfunc($test){         //für Änderung global muss par als &$test übergeben werden. Achtung unübersichtlich.
+    $test = "different test";   //parameter ändert sich nur im scope der Funktion
+    echo $test."<br>";
+}
+
+myfunc($test);
+echo $test;
 ?>
