@@ -1,5 +1,5 @@
 <?php
-namespace Forum;
+namespace App\Forum;
 
 class Post
 {

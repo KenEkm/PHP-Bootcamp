@@ -1,15 +1,24 @@
 <?php
 
-require("./User/User.php");
-require("./Blog/PostInterface.php");
-require("./Blog/Post.php");
-require("./Forum/Post.php");
+function autoload($className)
+{
+    $prefix = "App";
+    $dir = "../Namespaces";
 
-$post = new Blog\Post();
+    $clss = substr($className, strlen($prefix));
+    $clss = str_replace("\\", "/", $clss);
+
+    if(file_exists("{$dir}{$clss}.php")){
+        require "{$dir}{$clss}.php";
+    }
+}
+spl_autoload_register("autoload");
+
+$post = new App\Blog\Post();
 var_dump($post);
 echo("<br>");
 
-$post2 = new Forum\Post();
+$post2 = new App\Forum\Post();
 var_dump($post2);
 
 ?>

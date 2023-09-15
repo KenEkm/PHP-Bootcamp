@@ -1,5 +1,5 @@
 <?php
-namespace Blog;
+namespace App\Blog;
 
 interface PostInterface
 {
