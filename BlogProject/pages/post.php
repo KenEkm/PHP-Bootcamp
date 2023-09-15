@@ -3,11 +3,10 @@
 
 <h1>Post.php</h1>
 
-<!-- Ausgabe des Parameters der im Hyperlink mitgeliefert wird -->
+<!-- Zugriff auf Parameter der im Hyperlink mitgeliefert wird mit _GET als array -->
 <?php
-$title = $_GET['title'];
-$post = fetch_post($title);
-var_dump($post);
+$id = $_GET['id'];
+$post = fetch_post($id);
 ?>
 
 <div class="card text-bg-dark mb-3">
@@ -16,7 +15,7 @@ var_dump($post);
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
-      <p><?php echo $post["content"]; ?></p>
+      <p><?php echo nl2br($post["content"]); ?></p>   <!-- nl2br wendelt Zeilenumbrüche in breaks um. -->
       <footer class="blockquote-footer">Author</footer>
     </blockquote>
   </div>
