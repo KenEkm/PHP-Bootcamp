@@ -1,5 +1,6 @@
 <?php
 
+require("./User/User.php");
 require("./Blog/PostInterface.php");
 require("./Blog/Post.php");
 require("./Forum/Post.php");
