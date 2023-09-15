@@ -13,7 +13,7 @@
     <?php foreach($res AS $row): ?>
       <!-- Verlinkung auf Post Seite mit Titel als Parameter -->
         <li>
-          <a href="post.php?title=<?php echo $row["title"] ?>">
+          <a href="post.php?id=<?php echo $row["id"] ?>">
             <?php echo $row["title"]; ?>
           </a>
         </li>
