@@ -1,4 +1,4 @@
-<?php include("../database.php"); //DB Verbindung einbinden ?>
+<?php include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
 <?php include("elements/header.php"); ?>
 
 <h1>Startseite des Blogs</h1>
