@@ -14,19 +14,17 @@ class PostsRepository
 
     //Daten mit SQL-query abfragen
     function fetchPosts(){
-        return $this->pdo->query("SELECT * FROM `posts`"); 
+        $stmt = $this->pdo->query("SELECT * FROM `posts`"); 
+        $posts = $stmt->fetchAll(PDO::FETCH_CLASS, "App\\Post\\PostModel");
+        return $posts;
     }
 
 
     function fetchPost($id){
         $stmt = $this->pdo->prepare("SELECT * FROM `posts` WHERE id = ?"); //prepare Statements gegen SQL-Inj
         $stmt->execute([$id]);   //? aus prepare Statement wird hier gefüllt
-        $postArray = $stmt->fetch();
-
-        $post = new PostModel();
-        $post->id = $postArray["id"];
-        $post->title = $postArray["title"];
-        $post->content = $postArray["content"];
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "App\\Post\\PostModel");  //turns fetched date into object
+        $post = $stmt->fetch(PDO::FETCH_CLASS);
         return $post;
 
         /*  Achtung SQL-Injection Gefahr, da nicht überprft ob $id Parameter oder sql Abfrage ist
@@ -34,7 +32,5 @@ class PostsRepository
         return $q->fetch();
         */
     }
-
 }
-
 ?>
