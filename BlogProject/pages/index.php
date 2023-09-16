@@ -1,4 +1,8 @@
-<?php include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
+<?php
+
+use App\Post\PostsRepository;
+
+ include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
 <?php include("elements/header.php"); ?>
 
 <h1>Startseite des Blogs</h1>
@@ -6,7 +10,8 @@
 
 <?php 
     //Funktionsaufruf für Datenabfrage mit SQL-query
-    $res = fetch_posts();
+    $postsRepository = new PostsRepository();
+    $res = $postsRepository->fetchPosts();
 ?>
 
 <ul>

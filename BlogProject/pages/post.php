@@ -1,12 +1,17 @@
-<?php include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
+<?php
+
+use App\Post\PostsRepository;
+
+ include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
 <?php include("elements/header.php"); ?>
 
 <h1>Post.php</h1>
 
 <!-- Zugriff auf Parameter der im Hyperlink mitgeliefert wird mit _GET als array -->
 <?php
+$postsRepository = new PostsRepository();
 $id = $_GET['id'];
-$post = fetch_post($id);
+$post = $postsRepository->fetchPost($id);
 ?>
 
 <div class="card text-bg-dark mb-3">
