@@ -10,7 +10,7 @@ use App\Post\PostsRepository;
 
 <?php 
     //Funktionsaufruf für Datenabfrage mit SQL-query
-    $postsRepository = new PostsRepository();
+    $postsRepository = new PostsRepository($pdo);
     $res = $postsRepository->fetchPosts();
 ?>
 

@@ -1,19 +1,25 @@
 <?php
 namespace App\Post;
 
+use PDO;
+
 class PostsRepository
 {
+    private $pdo;
+
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
 
     //Daten mit SQL-query abfragen
     function fetchPosts(){
-        global $pdo;
-        return $pdo->query("SELECT * FROM `posts`"); 
+        return $this->pdo->query("SELECT * FROM `posts`"); 
     }
 
 
     function fetchPost($id){
-        global $pdo;
-        $stmt = $pdo->prepare("SELECT * FROM `posts` WHERE id = ?"); //prepare Statements gegen SQL-Inj
+        $stmt = $this->pdo->prepare("SELECT * FROM `posts` WHERE id = ?"); //prepare Statements gegen SQL-Inj
         $stmt->execute([$id]);   //? aus prepare Statement wird hier gefüllt
         return $stmt->fetch();
 
