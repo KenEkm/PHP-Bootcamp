@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use PDO;
+use App\Post\PostsController;
 use App\Post\PostsRepository;
 
 class Container
@@ -13,20 +14,25 @@ class Container
     public function __construct()
     {
         $this->recipe = [
-        'postsRepository' => function() {
-            return new PostsRepository(
-            $this->make("pdo")
-            );
-        },
-        'pdo' => function() {
-            $pdo = new PDO(
-            'mysql:host=localhost;dbname=blog;charset=utf8',
-            'blog',
-            $this->getPw()
-            );
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            return $pdo;
-        }
+            'postsController' => function() {
+                return new PostsController(
+                    $this->make('postsRepository')
+                );
+            },
+            'postsRepository' => function() {
+                return new PostsRepository(
+                $this->make("pdo")
+                );
+            },
+            'pdo' => function() {
+                $pdo = new PDO(
+                'mysql:host=localhost;dbname=blog;charset=utf8',
+                'blog',
+                $this->getPw()
+                );
+                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                return $pdo;
+            }
         ];
     }
 

@@ -2,7 +2,14 @@
 
 use App\Post\PostsRepository;
 
- include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
+ include("../init.php"); //DB Verbindung und Autoloader einbinden 
+ 
+  $postsController = $container->make("postsController");
+  $postsController->show();
+ 
+ ?>
+
+ <?php /*
 <?php include("elements/header.php"); ?>
 
 <h1>Post.php</h1>
@@ -28,3 +35,4 @@ $post = $postsRepository->fetchPost($id);
 
 
 <?php include("elements/footer.php"); ?>
+*/?>

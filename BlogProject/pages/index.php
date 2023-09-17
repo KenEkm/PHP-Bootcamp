@@ -1,5 +1,12 @@
 <?php
 
+include("../init.php");
+
+$postsController = $container->make("postsController");
+$postsController->index();
+
+
+/*
 use App\Post\PostsRepository;
 
  include("../init.php"); //DB Verbindung und Autoloader einbinden ?>
@@ -9,9 +16,7 @@ use App\Post\PostsRepository;
 <p class="lead">Das hier ist die Startseite des Blogs.</p>
 
 <?php 
-    //Funktionsaufruf für Datenabfrage mit SQL-query
-    $postsRepository = $container->make("postsRepository");
-    $res = $postsRepository->fetchPosts();
+
 ?>
 
 <ul>
@@ -25,4 +30,6 @@ use App\Post\PostsRepository;
     <?php endforeach; ?>
 </ul>
 
-<?php include("elements/footer.php"); ?>
+<?php include("elements/footer.php");
+
+*/?>
