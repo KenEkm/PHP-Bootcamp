@@ -11,18 +11,35 @@ class PostsController
         $this->postsRepository = $postsRepository;
     }
 
+    protected function render($view, $params){
+        /* verwende Alternative extract Methode
+        foreach($params AS $key => $value){
+            ${$key} = $value;
+        }
+        */
+
+        extract($params);
+        include __DIR__."/../../Views/{$view}.php";
+    }
+
     public function index(){
         //Funktionsaufruf für Datenabfrage mit SQL-query
         $posts = $this->postsRepository->fetchPosts();
 
-        include __DIR__."/../../Views/Post/index.php";
+        $this->render("post/index", [
+            'posts' => $posts
+        ]);
+
+    
     }
 
     public function show(){
         $id = $_GET['id'];
         $post = $this->postsRepository->fetchPost($id);
 
-        include __DIR__."/../../Views/Post/show.php";
+        $this->render("post/show", [
+            'post' => $post
+        ]);
     }
 }
 ?>
