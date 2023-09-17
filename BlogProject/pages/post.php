@@ -9,7 +9,7 @@ use App\Post\PostsRepository;
 
 <!-- Zugriff auf Parameter der im Hyperlink mitgeliefert wird mit _GET als array -->
 <?php
-$postsRepository = new PostsRepository($pdo);
+$postsRepository = $container->getPostsRepository();
 $id = $_GET['id'];
 $post = $postsRepository->fetchPost($id);
 ?>
