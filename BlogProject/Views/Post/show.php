@@ -12,6 +12,8 @@
   </div>
 </div>
 
+<br>
+
 <ul class="list-group">
   <?php foreach($comments AS $comment): ?>
     <li class="list-group-item">
@@ -19,5 +21,17 @@
     </li>
   <?php endforeach; ?>
 </ul>
+
+<br>
+
+<form method="post" action="post?id=<?php echo $post['id']; ?>">
+
+  <div class="mb-3">
+    <label for="imputKommentar" class="form-label">Kommentar</label>
+    <textarea name="content" class="form-control"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Kommentar hinzufügen</button>
+</form>
 
 <?php include __DIR__."/../Layout/footer.php"; ?>
