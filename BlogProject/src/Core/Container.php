@@ -3,6 +3,8 @@
 namespace App\Core;
 
 use PDO;
+use Exception;
+use PDOException;
 use App\Post\PostsController;
 use App\Post\PostsRepository;
 
@@ -25,11 +27,16 @@ class Container
                 );
             },
             'pdo' => function() {
-                $pdo = new PDO(
-                'mysql:host=localhost;dbname=blog;charset=utf8',
-                'blog',
-                $this->getPw()
-                );
+                try{
+                    $pdo = new PDO(
+                        'mysql:host=localhost;dbname=blog;charset=utf8',
+                        'blog',
+                        $this->getPw()
+                    );
+                } catch (PDOException $e){
+                    echo "Datenbankverbindung fehlgeschlagen.";
+                    die();
+                }
                 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 return $pdo;
             }

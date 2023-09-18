@@ -4,7 +4,7 @@
     <?php foreach($posts AS $post): ?>
       <!-- Verlinkung auf Post Seite mit Titel als Parameter -->
         <li>
-          <a href="post.php?id=<?php echo $post->id ?>">
+          <a href="post?id=<?php echo $post->id ?>">
             <?php echo $post->title; ?>
           </a>
         </li>
