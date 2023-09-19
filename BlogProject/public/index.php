@@ -1,4 +1,7 @@
 <?php
+//generiert neue SessionId die in einem Cookie gespeichert wird.
+session_start();
+
 require __DIR__."/../init.php";
 
 $pathInfo = $_SERVER['PATH_INFO'];
@@ -7,6 +10,14 @@ $routes = [
     '/login' => [
         'controller' => 'loginController',
         'method' => 'login'
+    ],
+    '/dashboard' => [
+        'controller' => 'loginController',
+        'method' => 'dashboard'
+    ],
+    '/logout' => [
+        'controller' => 'loginController',
+        'method' => 'logout'
     ],
     '/index' => [
         'controller' => 'postsController',
@@ -34,5 +45,4 @@ if($pathInfo == "/index"){
     $postsController->show();
 }
 */
-
 ?>

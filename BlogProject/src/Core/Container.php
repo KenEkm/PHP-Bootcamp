@@ -10,6 +10,7 @@ use App\Post\PostsRepository;
 use App\Post\CommentsRepository;
 use App\Post\PostsController;
 use App\User\LoginController;
+use App\User\LoginService;
 use App\User\UsersRepository;
 
 class Container
@@ -20,9 +21,14 @@ class Container
     public function __construct()
     {
         $this->recipe = [
+            'loginService' => function() {
+                return new LoginService(
+                    $this->make('usersRepository')
+                );
+            },
             'loginController' => function() {
                 return new LoginController(
-                    $this->make('usersRepository')
+                    $this->make('loginService')
                 );
             },
             'postsController' => function() {
