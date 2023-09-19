@@ -8,6 +8,7 @@ use PDOException;
 
 use App\Post\PostsRepository;
 use App\Post\CommentsRepository;
+use App\Post\PostsAdminController;
 use App\Post\PostsController;
 use App\User\LoginController;
 use App\User\LoginService;
@@ -21,6 +22,12 @@ class Container
     public function __construct()
     {
         $this->recipe = [
+            'postsAdminController' => function() {
+                return new PostsAdminController(
+                    $this->make('postsRepository'),
+                    $this->make('loginService')
+                );
+            },
             'loginService' => function() {
                 return new LoginService(
                     $this->make('usersRepository')
