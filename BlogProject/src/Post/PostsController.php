@@ -6,6 +6,8 @@ use App\Core\AbstractController;
 
 class PostsController extends AbstractController
 {
+    private $postsRepository;
+    private $commentsRepository;
 
     public function __construct(
         PostsRepository $postsRepository, 
